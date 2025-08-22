@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickax Social - Your Voice, Your Platform, Your Way</title>
+    <meta name="description" content="Join Pickax Social, the free speech social media platform that puts you in control. Discover an X alternative, Twitter alternative that values diverse voices and creator monetization.">
+    <meta name="keywords" content="Pickax, Pickax Social, X alternative, Twitter alternative, Truth Social alternative, BlueSky alternative, free speech social media, social platform">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Blue Lightning Bolt Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234a90e2%22>⚡</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234a90e2%22>⚡</text></svg>">
+    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234a90e2%22>⚡</text></svg>">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a90e2;
+            --primary-dark: #357abd;
+            --secondary: #ff6b6b;
+            --secondary-light: #ff8e53;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --text: #333333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 8px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--secondary), var(--secondary-light));
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .hero {
+            padding: 150px 0 80px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero .cta-button {
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .main-content {
+            background: var(--white);
+            border-radius: 30px 30px 0 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: var(--light);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            width: 8px;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: var(--white);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            font-weight: bold;
+            position: sticky;
+            left: 0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .check-mark {
+            color: #27ae60;
+            font-size: 18px;
+        }
+
+        .x-mark {
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        .testimonials {
+            background: var(--light);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 60px;
+            color: rgba(74, 144, 226, 0.1);
+            font-family: Georgia, serif;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-question {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--primary-dark);
+        }
+
+        .faq-question::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                padding: 130px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .features-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .feature-card,
+            .stat-card,
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .cta-button {
+                padding: 10px 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            h2::after {
+                width: 60px;
+            }
+            
+            .logo {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo"><i class="fas fa-bolt"></i>Pickax</a>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <a href="https://pickax.com/?referralCode=9bgj0rc&refSource=copy" class="cta-button">Join Now</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Your Voice Deserves to Be Heard</h1>
+            <p>Pickax Social is the free speech platform where diverse voices thrive, creators earn, and authentic conversations happen without the fear of unfair censorship.</p>
+            <a href="https://pickax.com/?referralCode=9bgj0rc&refSource=copy" class="cta-button pulse" style="font-size: 1.2rem; padding: 15px 40px;">Start Your Journey</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="section">
+            <div class="container">
+                <h2>Why Pickax is Different</h2>
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 40px;">In a world where social platforms often silence voices, Pickax stands as a beacon for genuine free expression and user empowerment.</p>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <span class="stat-number">100%</span>
+                        <p>User Control Over Content</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">0</span>
+                        <p>Shadow Banning</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">∞</span>
+                        <p>Monetization Opportunities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Powerful Features That Put You First</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                        <h3>No Algorithm Manipulation</h3>
+                        <p>What you post is what people see. No shadow banning, no throttling, no invisible algorithms deciding who gets to see your content.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <h3>Multiple Revenue Streams</h3>
+                        <p>Creator accounts earn through subscription paywalls (90% to creator, 10% platform fee), advertising revenue share (50% split), and affiliate marketing commissions.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+                        <h3>Long-Form Articles</h3>
+                        <p>Publish detailed articles and posts that showcase your expertise. No character limits holding back your thoughts and ideas.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-video"></i></div>
+                        <h3>Rumble Video Integration</h3>
+                        <p>Auto-sync your Rumble videos directly into your Pickax feed. Videos play natively without pop-ups or external redirects.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+                        <h3>Free Verification</h3>
+                        <p>Get verified for free by proving you're a real human. No monthly fees, no special requirements - just authentic identity verification.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-envelope"></i></div>
+                        <h3>Direct Email Integration</h3>
+                        <p>Email your articles directly to followers (coming soon). Build your email list and communicate without Big Tech middlemen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>How Pickax Compares to Other Platforms</h2>
+                <p style="text-align: center; margin-bottom: 30px;">See why users are choosing Pickax Social over traditional platforms</p>
+                
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Pickax</th>
+                                <th>X (Twitter)</th>
+                                <th>Truth Social</th>
+                                <th>BlueSky</th>
+                                <th>Gettr</th>
+                                <th>Parler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No Algorithm Manipulation</td>
+                                <td><span class="check-mark"><i class="fas fa-check"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td>Limited</td>
+                                <td>Moderate</td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                            </tr>
+                            <tr>
+                                <td>Creator Revenue Share</td>
+                                <td><span class="check-mark"><i class="fas fa-check"></i></span></td>
+                                <td>Limited</td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td>Article Publishing</td>
+                                <td><span class="check-mark"><i class="fas fa-check"></i></span></td>
+                                <td>Limited</td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td>Basic</td>
+                                <td>Basic</td>
+                                <td>Basic</td>
+                            </tr>
+                            <tr>
+                                <td>Rumble Integration</td>
+                                <td><span class="check-mark"><i class="fas fa-check"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                                <td><span class="x-mark"><i class="fas fa-times"></i></span></td>
+                            </tr>
+                            <tr>
+                                <td>Free Verification</td>
+                                <td><span class="check-mark"><i class="fas fa-check"></i></span></td>
+                                <td>$8/month</td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                                <td>Limited</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section testimonials">
+            <div class="container">
+                <h2>What Real Users Are Saying</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p style="font-style: italic; margin-bottom: 15px;">"If you haven't joined @pickaxsocial yet, I highly recommend it... run by real people who genuinely believe in free speech... 10/10 recommend."</p>
+                        <strong>- Ryan</strong>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p style="font-style: italic; margin-bottom: 15px;">"It's the best social platform around! I love it! The articles tab is my fav! I have already been accepted as a creator... I've never been this early before."</p>
+                        <strong>- Kamz</strong>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <p style="font-style: italic; margin-bottom: 15px;">"So cool to see these verified badges on @pickaxsocial & KNOW they are actually REAL people."</p>
+                        <strong>- PudgeTV</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How does creator monetization work on Pickax?</div>
+                    <div class="faq-answer">
+                        <p>Creators earn through three streams: 1) Subscription paywalls (90% to creator, 10% platform fee), 2) Advertising revenue share (50% split based on views), and 3) Affiliate marketing with unique tracking codes. Payments require $100 minimum threshold monthly.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">What makes Pickax different from other social platforms?</div>
+                    <div class="faq-answer">
+                        <p>Pickax has no algorithms manipulating your feed or reach. What you post is what people see - no shadow banning or throttling. Plus features like free verification, Rumble integration, and direct creator monetization that other platforms don't offer.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Is Pickax suitable for users across the political spectrum?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely. Pickax welcomes users of all political viewpoints and encourages respectful dialogue. Our platform is designed to foster understanding between different perspectives rather than creating echo chambers.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">How does Pickax handle user privacy and data security?</div>
+                    <div class="faq-answer">
+                        <p>User privacy is paramount. We employ industry-standard encryption, minimal data collection practices, and transparent privacy policies. Your personal information is never sold to third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white;">
+            <div class="container" style="text-align: center;">
+                <h2 style="color: white;">Ready to Experience True Social Freedom?</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 30px;">Join thousands of users who've discovered a better way to connect, share, and grow online. Your voice matters, and on Pickax, it will be heard.</p>
+                <a href="https://pickax.com/?referralCode=9bgj0rc&refSource=copy" class="cta-button pulse" style="font-size: 1.2rem; padding: 20px 50px; margin: 10px;">Join Pickax Today</a>
+                <p style="margin-top: 20px; opacity: 0.9;">✨ Early adopters get exclusive features and benefits</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pickax Site.</p>
+            <p class="disclaimer">
+                This site is not affiliated with Pickax Social. All trademarks and
+                copyrights belong to their respective owners.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle FAQ items
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentNode;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                alert('Mobile menu would open here. In a real implementation, this would show a navigation menu.');
+            });
+        }
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .stat-card, .testimonial-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                
+                // If element is in viewport
+                if(position.top < window.innerHeight && position.bottom >= 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize elements for animation
+        document.querySelectorAll('.feature-card, .stat-card, .testimonial-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Listen for scroll events
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check
+        window.addEventListener('load', animateOnScroll);
+        
+        // Add animation for hero elements
+        document.querySelectorAll('.hero h1, .hero p, .hero .cta-button').forEach(element => {
+            element.style.opacity = '0';
+        });
+
+        // Animate hero elements on load
+        setTimeout(() => {
+            document.querySelector('.hero h1').style.opacity = '1';
+            setTimeout(() => {
+                document.querySelector('.hero p').style.opacity = '1';
+                setTimeout(() => {
+                    document.querySelector('.hero .cta-button').style.opacity = '1';
+                }, 300);
+            }, 300);
+        }, 500);
+    </script>
+</body>
+</html>
