@@ -525,9 +525,6 @@
     <header>
         <nav class="container">
             <a href="#" class="logo"><i class="fas fa-bolt"></i>Pickax</a>
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
             <a href="https://pickax.com/?referralCode=9bgj0rc&refSource=copy" class="cta-button">Join Now</a>
         </nav>
     </header>
@@ -761,14 +758,7 @@
             });
         });
 
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                alert('Mobile menu would open here. In a real implementation, this would show a navigation menu.');
-            });
-        }
-
+        
         // Animate elements on scroll
         function animateOnScroll() {
             const elements = document.querySelectorAll('.feature-card, .stat-card, .testimonial-card');
